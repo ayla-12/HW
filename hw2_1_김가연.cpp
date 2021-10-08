@@ -24,7 +24,7 @@ ListNode* insert(ListNode* head, ListNode* pre, element val) { // pre 뒤에 새로�
 	return head; // head 반환
 }
 
-void print_list(ListNode* head) { // head부터 링크로 연결된 노ㅡ의 data를 계속 출력
+void print_list(ListNode* head) { // head부터 링크로 연결된 노드의 data를 계속 출력
 	for (ListNode* p = head; p != NULL; p = p->link) {
 		printf("%3d ->", p->data); // 반복문을 돌면서 형식에 맞춰 예쁘게 찍어줍니다.
 	}
@@ -65,6 +65,7 @@ void my_name() { //정보 출력을 위한 이름 함수입니다.
 	return;
 }
 
+
 int main(void) {
 	my_name(); //이름 출력
 
@@ -89,4 +90,3 @@ int main(void) {
 
 	return 0;
 }
-
