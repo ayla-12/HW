@@ -1,67 +1,67 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void my_name() { //Á¤º¸ Ãâ·ÂÀ» À§ÇÑ ÀÌ¸§ ÇÔ¼öÀÔ´Ï´Ù.
+void my_name() { //ì •ë³´ ì¶œë ¥ì„ ìœ„í•œ ì´ë¦„ í•¨ìˆ˜ì…ë‹ˆë‹¤.
 	printf("=====================\n");
-	printf("ÇĞ°ú: »çÀÌ¹öº¸¾ÈÀü°ø\n");
-	printf("ÇĞ¹ø: 2071060\n");
-	printf("ÀÌ¸§: ±è°¡¿¬\n");
+	printf("í•™ê³¼: ì‚¬ì´ë²„ë³´ì•ˆì „ê³µ\n");
+	printf("í•™ë²ˆ: 2071060\n");
+	printf("ì´ë¦„: ê¹€ê°€ì—°\n");
 	printf("=====================\n\n");
 	return;
 }
 
-typedef struct TreeNode { // Æ®¸® ³ëµå ±¸Á¶Ã¼ ¼±¾ğ
-	int data; // µ¥ÀÌÅÍ¸¦ ´ã´Â °ø°£°ú
-	struct TreeNode* left, * right; // ¿ŞÂÊ, ¿À¸¥ÂÊ Æ÷ÀÎÆ® Á¤º¸¸¦ Æ÷ÇÔÇÕ´Ï´Ù.
+typedef struct TreeNode { // íŠ¸ë¦¬ ë…¸ë“œ êµ¬ì¡°ì²´ ì„ ì–¸
+	int data; // ë°ì´í„°ë¥¼ ë‹´ëŠ” ê³µê°„ê³¼
+	struct TreeNode* left, * right; // ì™¼ìª½, ì˜¤ë¥¸ìª½ í¬ì¸íŠ¸ ì •ë³´ë¥¼ í¬í•¨í•©ë‹ˆë‹¤.
 }TreeNode;
 
-void inorder(TreeNode* exp) { //inorder traversalÀ» ÅëÇØ Æ®¸®¿¡ ´ã±ä Á¤º¸¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+void inorder(TreeNode* exp) { //inorder traversalì„ í†µí•´ íŠ¸ë¦¬ì— ë‹´ê¸´ ì •ë³´ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
 	if (exp) {
-		inorder(exp->left); // ¿ŞÂÊ ¼­ºêÆ®¸® Å½»ö
-		printf(" [%d] ", exp->data);// ³ëµå ¹æºĞ
-		inorder(exp->right); // ¿À¸¥ÂÊ ¼­ºêÆ®¸® Å½»ö
+		inorder(exp->left); // ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ íƒìƒ‰
+		printf(" [%d] ", exp->data);// ë…¸ë“œ ë°©ë¶„
+		inorder(exp->right); // ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ íƒìƒ‰
 	}
 }
 
-int get_node_count(TreeNode* exp) { // ³ëµå °³¼ö¸¦ ¼¼´Â ÇÔ¼ö
-	if (exp == NULL) return 0; // ¸¸¾à exp°¡ NULL ÀÌ¶ó¸é 0À» ¸®ÅÏÇÕ´Ï´Ù. (Àç±ÍÇÔ¼öÀÇ Á¾·áÁ¶°Ç)
+int get_node_count(TreeNode* exp) { // ë…¸ë“œ ê°œìˆ˜ë¥¼ ì„¸ëŠ” í•¨ìˆ˜
+	if (exp == NULL) return 0; // ë§Œì•½ expê°€ NULL ì´ë¼ë©´ 0ì„ ë¦¬í„´í•©ë‹ˆë‹¤. (ì¬ê·€í•¨ìˆ˜ì˜ ì¢…ë£Œì¡°ê±´)
 	else
-		return get_node_count(exp->left) + get_node_count(exp->right) + 1; // ¾Æ´Ï¶ó¸é ¿ŞÂÊ ¼­ºêÆ®¸®ÀÇ ³ëµå °³¼ö + ¿À¸¥ÂÊ ¼­ºêÆ®¸®ÀÇ ³ëµå °³¼ö + 1À» ¸®ÅÏÇÕ´Ï´Ù.
+		return get_node_count(exp->left) + get_node_count(exp->right) + 1; // ì•„ë‹ˆë¼ë©´ ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë…¸ë“œ ê°œìˆ˜ + ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë…¸ë“œ ê°œìˆ˜ + 1ì„ ë¦¬í„´í•©ë‹ˆë‹¤.
 }
 
-int get_leaf_count(TreeNode* exp) { // ´Ü¸» ³ëµå °³¼ö¸¦ ¼¼´Â ÇÔ¼ö
-	if (exp == NULL) return 0; // ¸¸¾à exp°¡ NULL ÀÌ¶ó¸é 0À» ¸®ÅÏÇÕ´Ï´Ù. (Àç±ÍÇÔ¼öÀÇ Á¾·áÁ¶°Ç)
+int get_leaf_count(TreeNode* exp) { // ë‹¨ë§ ë…¸ë“œ ê°œìˆ˜ë¥¼ ì„¸ëŠ” í•¨ìˆ˜
+	if (exp == NULL) return 0; // ë§Œì•½ expê°€ NULL ì´ë¼ë©´ 0ì„ ë¦¬í„´í•©ë‹ˆë‹¤. (ì¬ê·€í•¨ìˆ˜ì˜ ì¢…ë£Œì¡°ê±´)
 	else {
-		if (exp->left == NULL && exp->right == NULL) return 1; // exp°¡ NULL ÀÌ ¾Æ´Ï°í ´Ü¸»³ëµå¶ó¸é 1À» ¸®ÅÏÇÕ´Ï´Ù.
-		else return get_leaf_count(exp->left) + get_leaf_count(exp->right); // ºñ´Ü¸» ³ëµå¶ó¸é ÀÚ½Ä ³ëµåÀÇ ¸®ÅÏµÈ °ªÀ» ´õÇØ¼­ ¸®ÅÏÇÕ´Ï´Ù.
+		if (exp->left == NULL && exp->right == NULL) return 1; // expê°€ NULL ì´ ì•„ë‹ˆê³  ë‹¨ë§ë…¸ë“œë¼ë©´ 1ì„ ë¦¬í„´í•©ë‹ˆë‹¤.
+		else return get_leaf_count(exp->left) + get_leaf_count(exp->right); // ë¹„ë‹¨ë§ ë…¸ë“œë¼ë©´ ìì‹ ë…¸ë“œì˜ ë¦¬í„´ëœ ê°’ì„ ë”í•´ì„œ ë¦¬í„´í•©ë‹ˆë‹¤.
 	}
 }
 
-int get_height(TreeNode* exp) { // ³ôÀÌ¸¦ ±¸ÇÏ´Â ÇÔ¼ö
-	if (exp == NULL) return 0; // exp°¡ NULL ÀÌ¶ó¸é 0À» ¸®ÅÏÇÕ´Ï´Ù. (Àç±ÍÇÔ¼öÀÇ Á¾·áÁ¶°Ç)
+int get_height(TreeNode* exp) { // ë†’ì´ë¥¼ êµ¬í•˜ëŠ” í•¨ìˆ˜
+	if (exp == NULL) return 0; // expê°€ NULL ì´ë¼ë©´ 0ì„ ë¦¬í„´í•©ë‹ˆë‹¤. (ì¬ê·€í•¨ìˆ˜ì˜ ì¢…ë£Œì¡°ê±´)
 	else {
-		int l_height = get_height(exp->left); // ¿ŞÂÊ ¼­ºêÆ®¸®ÀÇ ³ôÀÌ¸¦ ±¸ÇØ Áö¿ªº¯¼ö¿¡ ÀúÀåÇÕ´Ï´Ù.
-		int r_height = get_height(exp->right); // ¿À¸¥ÂÊ ¼­ºêÆ®¸®ÀÇ ³ôÀÌ¸¦ ±¸ÇØ Áö¿ªº¯¼ö¿¡ ÀúÀåÇÕ´Ï´Ù.
-		if (l_height >= r_height) return l_height + 1; // ¸¸¾à ¿ŞÂÊÀÌ ¿À¸¥ÂÊº¸´Ù ³ô´Ù¸é ¿ŞÂÊ ¼­ºêÆ®¸®ÀÇ ³ôÀÌ + 1À» ¸®ÅÏÇÕ´Ï´Ù.
-		else return r_height + 1; //¾Æ´Ï¶ó¸é,Áï ¿À¸¥ÂÊÀÌ ¿ŞÂÊº¸´Ù ³ô´Ù¸é ¿À¸¥ÂÊ ¼­ºêÆ®¸®ÀÇ ³ôÀÌ + 1À» ¸®ÅÏÇÕ´Ï´Ù.
+		int l_height = get_height(exp->left); // ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë†’ì´ë¥¼ êµ¬í•´ ì§€ì—­ë³€ìˆ˜ì— ì €ì¥í•©ë‹ˆë‹¤.
+		int r_height = get_height(exp->right); // ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë†’ì´ë¥¼ êµ¬í•´ ì§€ì—­ë³€ìˆ˜ì— ì €ì¥í•©ë‹ˆë‹¤.
+		if (l_height >= r_height) return l_height + 1; // ë§Œì•½ ì™¼ìª½ì´ ì˜¤ë¥¸ìª½ë³´ë‹¤ ë†’ë‹¤ë©´ ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë†’ì´ + 1ì„ ë¦¬í„´í•©ë‹ˆë‹¤.
+		else return r_height + 1; //ì•„ë‹ˆë¼ë©´,ì¦‰ ì˜¤ë¥¸ìª½ì´ ì™¼ìª½ë³´ë‹¤ ë†’ë‹¤ë©´ ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë†’ì´ + 1ì„ ë¦¬í„´í•©ë‹ˆë‹¤.
 	}
 }
 
-bool is_balanced(TreeNode* exp){ // balanced Æ®¸®ÀÎÁö¸¦ ÆÇº°ÇÏ´Â ÇÔ¼ö
-	int l_height = get_height(exp->left); // ¿ŞÂÊ ¼­ºêÆ®¸®ÀÇ ³ôÀÌ¸¦ ±¸ÇØ Áö¿ªº¯¼ö¿¡ ÀúÀåÇÕ´Ï´Ù.
-	int r_height = get_height(exp->right); // ¿À¸¥ÂÊ ¼­ºêÆ®¸®ÀÇ ³ôÀÌ¸¦ ±¸ÇØ Áö¿ªº¯¼ö¿¡ ÀúÀåÇÕ´Ï´Ù.
-	if (abs(l_height - r_height)<=1) return true; // ¸¸¾à ¿ŞÂÊ ¼­ºêÆ®¸®¿Í ¿À¸¥ÂÊ ¼­ºêÆ®¸®ÀÇ Â÷ÀÌ(Àı´ë°ªÀ» È°¿ë)°¡ 1 ÀÌÇÏ¶ó¸é true¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
-	else return false; // ¾Æ´Ï¶ó¸é false¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+bool is_balanced(TreeNode* exp){ // balanced íŠ¸ë¦¬ì¸ì§€ë¥¼ íŒë³„í•˜ëŠ” í•¨ìˆ˜
+	int l_height = get_height(exp->left); // ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë†’ì´ë¥¼ êµ¬í•´ ì§€ì—­ë³€ìˆ˜ì— ì €ì¥í•©ë‹ˆë‹¤.
+	int r_height = get_height(exp->right); // ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë†’ì´ë¥¼ êµ¬í•´ ì§€ì—­ë³€ìˆ˜ì— ì €ì¥í•©ë‹ˆë‹¤.
+	if (abs(l_height - r_height)<=1) return true; // ë§Œì•½ ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ì™€ ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ì°¨ì´(ì ˆëŒ€ê°’ì„ í™œìš©)ê°€ 1 ì´í•˜ë¼ë©´ trueë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+	else return false; // ì•„ë‹ˆë¼ë©´ falseë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 }
 
-void bigger_node(TreeNode* exp, int input) { // ÀÔ·Â ¹ŞÀº °ªº¸´Ù Å« °ªÀ» Ãâ·ÂÇÏ´Â ÇÔ¼ö
-	if (exp) { // ÁßÀ§ Å½»öÀ» È°¿ëÇÕ´Ï´Ù.
+void bigger_node(TreeNode* exp, int input) { // ì…ë ¥ ë°›ì€ ê°’ë³´ë‹¤ í° ê°’ì„ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
+	if (exp) { // ì¤‘ìœ„ íƒìƒ‰ì„ í™œìš©í•©ë‹ˆë‹¤.
 		bigger_node(exp->left, input); 
-		if (exp->data > input) printf(" %d", exp->data); // ¸¸¾à exp°¡ °¡¸®Å°´Â µ¥ÀÌÅÍ°¡ ÀÔ·Â°ªº¸´Ù Å©´Ù¸é µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇØÁİ´Ï´Ù.
+		if (exp->data > input) printf(" %d", exp->data); // ë§Œì•½ expê°€ ê°€ë¦¬í‚¤ëŠ” ë°ì´í„°ê°€ ì…ë ¥ê°’ë³´ë‹¤ í¬ë‹¤ë©´ ë°ì´í„°ë¥¼ ì¶œë ¥í•´ì¤ë‹ˆë‹¤.
 		bigger_node(exp->right, input);
 	}
 }
-// Æ®¸® ±¸¼º
+// íŠ¸ë¦¬ êµ¬ì„±
 TreeNode n1 = { 1,NULL,NULL };
 TreeNode n2 = { 4, NULL, NULL };
 TreeNode n3 = { 15, &n1, &n2 };
@@ -71,21 +71,20 @@ TreeNode n6 = { 7, &n4, &n5 };
 TreeNode n7 = { 30, &n3, &n6};
 TreeNode* exp = &n7;
 
-
 int main() {
-	int check_input; // ³ªÁß¿¡ ¾²ÀÏ Áö¿ªº¯¼ö¸¦ ¼±¾ğÇÕ´Ï´Ù. ÀÔ·Â°ªÀ» ÀúÀåÇÏ´Â Á¤¼ö º¯¼öÀÔ´Ï´Ù.
-	my_name(); // ÀÌ¸§ Ãâ·Â
+	int check_input; // ë‚˜ì¤‘ì— ì“°ì¼ ì§€ì—­ë³€ìˆ˜ë¥¼ ì„ ì–¸í•©ë‹ˆë‹¤. ì…ë ¥ê°’ì„ ì €ì¥í•˜ëŠ” ì •ìˆ˜ ë³€ìˆ˜ì…ë‹ˆë‹¤.
+	my_name(); // ì´ë¦„ ì¶œë ¥
 
-	inorder(exp); printf("\n"); // ÁßÀ§ ¼øÈ¸ÇÏ¸ç Æ®¸®¿¡ ÀÖ´Â °ªÀ» Ãâ·ÂÇÕ´Ï´Ù.
+	inorder(exp); printf("\n"); // ì¤‘ìœ„ ìˆœíšŒí•˜ë©° íŠ¸ë¦¬ì— ìˆëŠ” ê°’ì„ ì¶œë ¥í•©ë‹ˆë‹¤.
 	printf("Number of nodes in tree: %d\n", get_node_count(exp));
 	printf("Height of the tree: %d\n", get_height(exp));
 	printf("Number of leafs in tree: %d\n", get_leaf_count(exp));
 	printf("Balanced tree? "); 
-	if (is_balanced(exp)) printf("Yes\n"); else printf("No\n"); // ¸¸¾à is_balanced¿¡¼­ ¹ŞÀº °ªÀÌ trueÀÌ¸é Yes¸¦ Ãâ·ÂÇÏ°í, false¶ó¸é No¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+	if (is_balanced(exp)) printf("Yes\n"); else printf("No\n"); // ë§Œì•½ is_balancedì—ì„œ ë°›ì€ ê°’ì´ trueì´ë©´ Yesë¥¼ ì¶œë ¥í•˜ê³ , falseë¼ë©´ Noë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
 	printf("Input a number to check: ");
-	scanf("%d", &check_input); // check_input¿¡ ÀÔ·Â¹ŞÀº °ªÀ» ÀúÀåÇÕ´Ï´Ù.
+	scanf("%d", &check_input); // check_inputì— ì…ë ¥ë°›ì€ ê°’ì„ ì €ì¥í•©ë‹ˆë‹¤.
 	printf("numbers greater than %d: ", check_input); 
-	bigger_node(exp,check_input); // ÇÔ¼ö¸¦ ÀÌ¿ëÇØ ÀÔ·Â°ªº¸´Ù Å« °ªÀ» Ãâ·ÂÇØÁİ´Ï´Ù.
+	bigger_node(exp,check_input); // í•¨ìˆ˜ë¥¼ ì´ìš©í•´ ì…ë ¥ê°’ë³´ë‹¤ í° ê°’ì„ ì¶œë ¥í•´ì¤ë‹ˆë‹¤.
 
 	return 0;
 }
